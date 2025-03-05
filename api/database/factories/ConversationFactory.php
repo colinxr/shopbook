@@ -22,6 +22,10 @@ class ConversationFactory extends Factory
     {
         return [
             'id' => Uuid::uuid4()->toString(),
+            'client_id' => function () {
+                return Client::factory()->create()->id;
+            },
+            'artist_id' => null, // Artist ID, nullable
             'title' => fake()->sentence(3),
             'status' => fake()->randomElement(['new', 'active', 'completed', 'archived']),
             'last_message_at' => fake()->optional(0.8)->dateTimeBetween('-1 month', 'now'),

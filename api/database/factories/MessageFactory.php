@@ -26,6 +26,9 @@ class MessageFactory extends Factory
 
         return [
             'id' => Uuid::uuid4()->toString(),
+            'conversation_id' => function () {
+                return Conversation::factory()->create()->id;
+            },
             'content' => fake()->paragraph(),
             'read_at' => fake()->optional(0.7)->dateTimeBetween('-1 month', 'now'),
             'user_id' => $isFromUser ? User::factory() : null,
