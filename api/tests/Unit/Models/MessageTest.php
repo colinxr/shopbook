@@ -78,13 +78,13 @@ class MessageTest extends TestCase
      */
     public function test_read_status_methods(): void
     {
-        $message = Message::factory()->create(['is_read' => false]);
+        $message = Message::factory()->create(['read_at' => null]);
 
         $this->assertFalse($message->isRead());
 
         $message->markAsRead();
         $this->assertTrue($message->isRead());
-        $this->assertTrue($message->is_read);
+        $this->assertNotNull($message->read_at);
     }
 
     /**
